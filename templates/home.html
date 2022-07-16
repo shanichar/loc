@@ -6,35 +6,27 @@
 
 <button onclick="getLocation()">get coordinates</button>
 
-
 <p id="demo"></p>
 <p id="dem"></p>
-<!--<button onclick="copy()">copy</button>-->
-
+<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
 var x = document.getElementById("demo");
 var z = document.getElementById("dem")
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(y);
   } else { 
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
-//function copy() {
- // x.select();
-  //x.setSelectionRange(0, 20);
-  //navigator.clipboard.writeText(x.value);
-  //alert("copied" + x.value);
-//}
-
-function showPosition(position) {
-  
+var y = function showPosition(position) {
+  x.innerHTML = position.coords.latitude + "," + position.coords.longitude;
   lat = position.coords.latitude;
   long = position.coords.longitude;
-  var latlong = google.maps.LatLng(lat, long);
-  x.innerHTML = latlong;
+  var latlong = new google.maps.LatLng(lat, long);
+  var latlong = new google.maps.LatLng(lat, long);
+  z.innerHTML = latlong;
 }
 </script>
 
