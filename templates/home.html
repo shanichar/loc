@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">get coordinates</button>
+
+
+<p id="demo"></p>
+<p id="dem"></p>
+<!--<button onclick="copy()">copy</button>-->
+
+<script>
+var x = document.getElementById("demo");
+var z = document.getElementById("dem")
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+//function copy() {
+ // x.select();
+  //x.setSelectionRange(0, 20);
+  //navigator.clipboard.writeText(x.value);
+  //alert("copied" + x.value);
+//}
+
+function showPosition(position) {
+  
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+  var latlong = google.maps.LatLng(lat, long);
+  x.innerHTML = latlong;
+}
+</script>
+
+<div>
+    <form class="locationText" id="locationForm" action="{{ url_for('render_results') }}" method="post">
+        City Name: <input class="locationText" id="locationInput" type="text" name="Area"><br>
+        <input class="locationText" id="locationSubmit" type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
